@@ -1,0 +1,34 @@
+{
+  "name": "stress-scale",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "budo index.js:bundle.js -- -t babelify",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raquelxmoss/stress-scale.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raquelxmoss/stress-scale/issues"
+  },
+  "homepage": "https://github.com/raquelxmoss/stress-scale#readme",
+  "dependencies": {
+    "@cycle/dom": "^10.1.0",
+    "@cycle/xstream-run": "^3.0.3",
+    "lodash": "^4.13.1",
+    "xstream": "^5.2.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.1",
+    "budo": "^8.3.0",
+    "garnish": "^5.2.0"
+  }
+}
