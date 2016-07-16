@@ -1,5 +1,5 @@
 import {run} from '@cycle/xstream-run';
-import {makeDOMDriver, div, button} from '@cycle/dom';
+import {makeDOMDriver, div, button, h1, h2} from '@cycle/dom';
 import xs from 'xstream';
 
 import questions from './data';
@@ -25,7 +25,7 @@ function noReducer (state) {
 
 function renderFinalScore (score) {
   return (
-    div('.score', `Your final score is ${score}`)
+    h1('.score', `Your final score is ${score}`)
   );
 }
 
@@ -38,8 +38,8 @@ function view (state) {
 
   return (
     div('.question', [
-      div('.preface', 'In the last year, have you experienced:'),
-      div('.question-text', question.event),
+      h2('.preface', 'In the last year, have you experienced:'),
+      h1('.question-text', question.event),
       div('.buttons', [
         button('.yes', 'Yes'),
         button('.no', 'No')

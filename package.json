@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "budo index.js:bundle.js -- -t babelify",
+    "start": "budo index.js:bundle.js --live *.css -- -t babelify",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
