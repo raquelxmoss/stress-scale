@@ -4,14 +4,20 @@ import xs from 'xstream';
 
 import questions from './data';
 
+const initialState = {
+  questions,
+  currentQuestionIndex: 0,
+  score: 0
+};
+
 function yesReducer (state) {
-  const question = state.questions[0];
+  const question = currentQuestion(state);
 
   return {
     ...state,
 
     score: state.score + question.score,
-    questions: state.questions.slice(1)
+    currentQuestionIndex: state.currentQuestionIndex + 1
   };
 }
 
@@ -19,8 +25,12 @@ function noReducer (state) {
   return {
     ...state,
 
-    questions: state.questions.slice(1)
+    currentQuestionIndex: state.currentQuestionIndex + 1
   };
+}
+
+function currentQuestion (state) {
+  return state.questions[state.currentQuestionIndex];
 }
 
 function renderFinalScore (score) {
@@ -30,11 +40,16 @@ function renderFinalScore (score) {
 }
 
 function view (state) {
-  if (state.questions.length === 0) {
+  if (state.currentQuestionIndex === state.questions.length) {
     return renderFinalScore(state.score);
   }
 
-  const question = state.questions[0];
+  const question = currentQuestion(state);
+  const progress = state.currentQuestionIndex / state.questions.length;
+
+  const progressStyle = {
+    width: `${progress * 100}%`
+  };
 
   return (
     div('.question', [
@@ -43,6 +58,9 @@ function view (state) {
       div('.buttons', [
         button('.yes', 'Yes'),
         button('.no', 'No')
+      ]),
+      div('.progress-container', [
+        div('.progress', {style: progressStyle})
       ])
     ])
   );
@@ -58,17 +76,6 @@ function main ({DOM}) {
     .select('.no')
     .events('click')
     .mapTo(noReducer);
-
-  // TODO:
-  // Given an array of stress scale questions
-  //  For each question
-  //    Render it to the DOM
-  //    Give the user the option to select YES or NO
-  //  Store the score of the user's answers
-  const initialState = {
-    questions,
-    score: 0
-  };
 
   const reducer$ = xs.merge(
     yes$,

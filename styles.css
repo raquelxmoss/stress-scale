@@ -10,6 +10,15 @@ button {
   font-size: 1em;
   text-transform: uppercase;
   letter-spacing: 0.02em;
+  outline: none;
+}
+
+button:active {
+  background: #2cc5f7;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 h1, h2 {
@@ -30,9 +39,20 @@ h1, h2 {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding: 0.7em 0;
+  padding: 0.7em 0 0;
   width: 40em;
   max-width: 100%;
   background: #333;
   color: #EEE;
+}
+
+.progress-container {
+  width: 100%;
+  margin-top: 0.8em;
+}
+
+.progress {
+  height: 3px;
+  background: #2cc5f7;
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
